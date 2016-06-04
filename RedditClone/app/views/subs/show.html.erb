@@ -1,0 +1,7 @@
+<%= link_to "Back to All Subs", subs_url %>
+<h1><%= @sub.title %></h1>
+<h3><%= @sub.description %></h3>
+<%= link_to "Add a New Post", sub_posts_new_url(@sub) %>
+<ul>
+  <%= render partial: "posts/post", collection: @sub.posts, as: :post %>
+</ul>

@@ -1,0 +1,11 @@
+<li>
+<% if post.url %>
+  <%= link_to post.title, post.url, target: :blank %>
+<% else %>
+  <%= post.title %>
+<% end %>
+  <ul>
+    <li><%= link_to "View Comments", post_url(post) %></li>
+    <li><%= post.content %></li>
+  </ul>
+</li>

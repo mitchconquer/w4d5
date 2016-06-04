@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><%= comment.author.username %> says...</div>
+  <div class="panel-body">
+    <%= comment.content %>
+    <br><br>
+    <% if comment.children %>
+      <ul>
+        <% @all_comments.where(parent_comment_id: comment.id).each do |child| %>
+          <%= render "comments/comment", comment: child %>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+  <div class="panel-footer">
+    <form class="" action="<%= post_comments_url(comment.post_id) %>" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="comment[parent_comment_id]" value="<%= comment.id %>">
+      <label for="comment_content">Reply to this comment:</label>
+      <input type="text" name="comment[content]" value="" id="comment_content">
+      <input type="submit" name="comment_submit" value="Submit Comment" >
+    </form>
+
+  </div>
+</div>

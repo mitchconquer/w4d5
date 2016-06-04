@@ -1,0 +1,26 @@
+
+<% if post.persisted? %>
+  <% action_url, method, button_text = update_sub_post_url(sub), "PATCH", "Update Post" %>
+<% else %>
+  <% action_url, method, button_text = sub_posts_create_url, "POST", "Create Post" %>
+<% end %>
+
+<form class="" action="<%= action_url %>" method="POST">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="post_title">Title: </label>
+  <input type="text" name="post[title]" value="<%= post.title %>" id="post_title">
+  <br><br>
+
+  <label for="post_url">URL: </label>
+  <input type="text" name="post[url]" value="<%= post.url %>" id="post_url">
+  <br><br>
+
+  <label for="post_content">Content: </label>
+  <input type="text" name="post[content]" value="<%= post.content %>" id="post_content">
+  <br><br>
+
+  <input type="submit" name="form_submit" value="<%= button_text %>">
+
+</form>
